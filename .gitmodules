@@ -1,0 +1,4 @@
+[submodule "pics"]
+	path = pics
+	url = https://github.com/AstralHope/YGODatabaseSamplePics.git
+	branch = pics

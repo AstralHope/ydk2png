@@ -1,0 +1,197 @@
+/*reset*/
+html {font-size: 100%;}
+body{line-height:1.4;color:#333;font-family:arial;font-size:1em;}
+input,textarea,select{font-size:100%;font-family:inherit;outline:0;}
+body,h1,h2,h3,h4,h5,h6,p,ul,ol,form,dl,dt,dd,li{margin:0;}
+h4,h5,h6{font-size:1em;}
+ul,ol{padding-left:0; list-style-type:none;}
+img{border:0;}
+article,aside,dialog,footer,header,section,nav,figure,menu{ display:block;}
+figure,menu{margin:0;padding:0}
+a:visited,a:active{outline:0}
+pre{word-wrap:break-word;white-space: pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;}
+/*common css*/
+.l{float:left;}.r{float:right;}.cl{clear:both;}
+.n{font-weight:normal; font-style:normal;}.b{font-weight:bold;}.i{font-style:italic;}
+.fa{font-family:Arial;}.fg{font-family:Georgia;}.ft{font-family:Tahoma;}.fl{font-family:Lucida Console;}.fs{font-family:'宋体';}.fw{font-family:'微软雅黑';}.fe{font-family:'serif';} 
+.tc{text-align:center;}.tr{text-align:right;}.tl{text-align:left;}
+.tdl{text-decoration:underline;}a.tdl:hover{text-decoration:none;}
+.tdn{text-decoration:none;}a.tdn:hover{text-decoration:underline;}
+.tdn2{text-decoration:none;}a.tdn2:hover{text-decoration:none;}
+.g0{color:#000000;}.wh{color:white;}
+.f0{font-size:0}.f10{font-size:.625em}.f11{font-size:.688em}.f12{font-size:.75em;}.f13{font-size:.813em}.f14{font-size:.875em}.f15{font-size:.938em}.f16{font-size:1em}.f18{font-size:1.125em}.f20{font-size:1.25em}.f24{font-size:1.5em}.f30{font-size:1.875em}.f32{font-size:2em}.f48{font-size:3em}
+.vm{vertical-align:middle;}.vtb{vertical-align:text-bottom;}.vt{vertical-align:top;}.vb{vertical-align:bottom;}.vn{vertical-align:-2px;}.vimg{margin-bottom:-3px;}
+.rel{position:relative;}.abs{position:absolute;}.fixed{position:fixed;}
+.db{display:block;}.dib{-moz-inline-stack:inline-block; display:inline-block;}.di{display:inline;}.dn{display:none;}
+.ovh{overflow:hidden;}.ovs{overflow:scroll;}.vh{visibility:hidden;}.vv{visibility:visible;}
+.fix{*zoom:1;}.fix:after,.fix:before{display:block; content:"clear"; height:0; clear:both; overflow:hidden; visibility:hidden;}.z{_zoom:1;}
+.min_fix{overflow:hidden;_zoom:1}
+.hidden{position:absolute;visibility:hidden;}
+.ie6fixed {_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop));}
+.ie6m0{*margin-left:0;}
+.indent9999{text-indent:-9999px;}
+.indent100{text-indent:-100px;}
+.input_align{vertical-align:-3px;}/*单选框 复选框文字对齐*/
+.zoom1{*zoom:1;}
+.left0_top0{left:0;top:0}
+.pointer{cursor:pointer;}
+/*website css*/
+/*
+①网站常见颜色，尤其是链接色
+②网站常见背景色（我习惯用bg+颜色前2字母表示，例如.bgf7表示background:#f7f7f7;）
+③网站常见边框色，这里类似于CSS 通用库中的margin属性，需拆分，例如.bbdd表示border-bottom:1px solid #ddd;每人的命名习惯不一样，但是尽量简单为好，甚至您可以像Google一样，直接两个字母（大小写混搭）表示。另外，一定要告知设计师，边框取色不宜多，不能凭感觉，要有所牺牲，也就是如果之前使用了#cecece的边框色，后面的即使使用#d0d0d0更好看，请使用#cecece代替，这就是团队协作。
+④网站遗留的单margin属性，例如，某一div留白较大，有个单独的margin-top:35px的属性，ok，这个属性请放在网站CSS样式库中，以.mt35{margin-top:35px;}保留，以供之后类似布局或需要的地方使用。
+⑤网站遗留的单padding属性，例如，双栏自适应布局时，无论是浮动自适应，还是绝对定位自适应，都需要使用padding-left值，此时的padding-left多单样式，可抽取出来，以网站样式库的形式存在。记住，是单属性，且不可从通用元素中抽取单独的padding值，否则是给自己挖火坑。
+⑥网站遗留的width属性，在流体布局思想下，宽度是有限的，是珍贵的，需好好利用。
+⑦网站常用的一些height属性，指一些高度值，例如height:18px; height:20px; height:24px; height:50px; height:100px; height:200px;等
+网站通用的元素（按钮，导航，选项卡的）的样式千万不能分离作为网站的CSS样式库
+*/
+@font-face {
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot?-fl11l');
+	src:url('fonts/icomoon.eot?#iefix-fl11l') format('embedded-opentype'),
+		url('fonts/icomoon.woff?-fl11l') format('woff'),
+		url('fonts/icomoon.ttf?-fl11l') format('truetype'),
+		url('fonts/icomoon.svg?-fl11l#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+.ficomoon{font-family:'icomoon';}
+.icon-print:before {content: "\e601"}.icon-like:before {content: "\e600"}.icon-trophy:before {content: "\e603"}.icon-stats:before {content: "\e602"}.icon-key:before {content: "\e604"}.icon-lock:before {content: "\e605"}.icon-signup:before {content: "\e606"}.icon-point-left:before {content: "\e607"}
+.icon-angle-top:before {content: "\f102"}.icon-angle-bottom:before {content: "\f103"}.icon-send:before {content: "\f1d9"}.icon-check:before {content: "\f00c"}.icon-times:before {content: "\f00d"}
+
+i{display:inline-block;font-style:normal}
+.mc{margin:0 auto}
+.gray1{color:#909090}
+.black1{color:#404040}
+.green1{color:#01b60e}
+.h20{height:20px}
+.pt5{padding-top:5px}
+.mr5{margin-right:5px}
+.ml10{margin-left:10px}
+.mb10{margin-bottom:10px}.mb15{margin-bottom:15px}.mb20{margin-bottom:20px}
+.zindex1{z-index:1;}.zindex2{z-index:2;}.zindex10{z-index:10;}
+.interception{white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;}
+.nowrap{white-space:nowrap;}
+.br{word-wrap:break-word;word-break:break-all}
+.border_gray1{border:1px solid #C2C2C2}
+.lh30{line-height:30px}.lh40{line-height:40px}
+/*website icon*/
+/*
+依次命名为：u00,u01,u02…u019,u10,u11,…u119…。这种命名的好处是不用关心到底哪个位置是那个图标，不用担心命名冲突，在小图标位置以及内容更换的情况下也无需重命名
+*/
+.ico_correct{color:#01b60e;margin-left:10px;font-family:'icomoon';vertical-align:middle;font-size:1.25em}
+.ico_correct:before {content: "\f00c"}
+.ico_error{color:#ff0000;margin-left:10px;font-family:'icomoon';vertical-align:middle;font-size:1.25em}
+.ico_error:before {content: "\f00d"}
+.ico_prompt{color:#ff0000;margin-left:10px;font-family:'icomoon';vertical-align:middle;font-size:1.3em}
+.ico_prompt:before {content: "\e607"}
+.ico_prompt_word{color:#ff0000;margin-left:5px;vertical-align:middle;font-size:.8em;}
+.img_share{background-image:url(../../images/2014/ico_share.png)}
+.img_weixin{background-position:-3px 3px}
+.img_weibo{background-position:-3px -23px}
+/*.icon-trophy_wh{*background-position:0 -253px}*/
+
+/*website independent element*/
+/*
+导航，菜单，按钮，选项卡，文本框装饰，图片装饰，圆角处理等等
+*/
+.error{color:#ff0000}
+.input_txt{border:1px solid #c2c2c2;padding:2px;vertical-align:middle}
+.input_txt_h25{border:1px solid #c2c2c2;padding:2px 5px;vertical-align:middle;line-height:25px;height:25px}
+.input_txt_h25:focus{border:1px solid #07600d}
+.boxshadow  .input_txt_h25:focus{-webkit-box-shadow:0 0 5px #07600d;-moz-box-shadow:0 0 5px #07600d;-o-box-shadow:0 0 5px #07600d;-ms-box-shadow:0 0 5px #07600d;box-shadow:0 0 5px #07600d;
+	-webkit-transition:all .3s;-moz-transition:all .3s;-o-transition:all .3s;-ms-transition:all .3s;transition:all .3s}
+.boxshadow  .input_error:focus{border:1px solid #ff0000}
+.boxshadow  .input_error:focus{-webkit-box-shadow:0 0 5px #ff0000;-moz-box-shadow:0 0 5px #ff0000;-o-box-shadow:0 0 5px #ff0000;-ms-box-shadow:0 0 5px #ff0000;box-shadow:0 0 5px #ff0000;
+	-webkit-transition:all .3s;-moz-transition:all .3s;-o-transition:all .3s;-ms-transition:all .3s;transition:all .3s}
+textarea_txt{border:1px solid #c2c2c2;padding:2px 5px;vertical-align:middle}
+a.a_green1{text-decoration:none;border-bottom:1px dashed #c2c2c2}
+a.a_green1:hover{color:#07600d}
+a.a_green1:active{color:#01b60e}
+a.a_yellow1{text-decoration:none}
+a.a_yellow1:hover{color:#f1f158}
+a.a_yellow1:active{color:#eedd09}
+a.a_nav{text-decoration:none;padding:0 15px;line-height:60px}
+a.a_nav:hover{background:#07600d}
+a.a_nav:active{background:#01b60e}
+a.btn_green1{text-decoration:none;background:#07600d;display:inline-block;text-align:center;color:#fff}
+a.btn_green1:hover{background:#439449}
+a.btn_green1:active{background:#01b60e}
+/*website public structure*/
+/*
+指的是最外框div的样式，一般限制网站的宽度(960~990不等)，还有就是网站的分栏布局样式，这里的样式仅仅针对主体结构，例如left_part，或是right_part；还包括网站的头部的一些公用结构，底部的样式结构等
+公共结构仅仅定宽定高，设置浮动属性，切不可在结构样式上添加margin或是padding属性，这会使网站的公共结构的重用性大大降低！
+*/
+.w1000{width:1000px}
+.w150{width:150px}
+.w300{width:300px}
+.w310{width:310px}
+.wperfect{width:100%}
+/*single page fine structure*/
+.layer1{background-color:#CCC;-moz-opacity: 0.8;opacity:0.8;filter: alpha(opacity=80);position:absolute}/*遮罩层*/
+.register{padding:20px 20px 30px 0}
+.register dt{margin-bottom:5px}
+.header{background:#008A00;border-bottom:1px solid #00cf0f;width:100%;height:60px;margin-bottom:40px;top:0;left:0;-moz-opacity: 0.9;opacity:0.9;filter: alpha(opacity=90)}
+.split_header{padding-top:100px;_padding-top:0}
+.nav_title{padding-bottom:10px;border-bottom:1px solid #C2C2C2}
+.remaining_word{color:#909090;float:right}
+.remaining_word font{color:#404040;font-family:Georgia}
+.out_box{border:1px solid #07600d;border-top:0;background:#fff}/*自动匹配*/
+.list_box{border-bottom:1px solid #eee;padding:5px; cursor:pointer;}
+.focus_box{background:#f0f3f9;padding:5px; cursor:pointer;border-bottom:1px solid #eee;}
+.mark_box{color:#c00}
+.pwd_complex{padding:5px 0;height:15px}
+.pwd_complex span{height:6px;width:80px;margin-right:5px;display:inline-block;border:1px solid #c2c2c2;overflow:hidden}
+.pwd_complex .strong{border:1px solid #45ac07;background:#61cc1f}
+.pwd_complex .strong_word{color:#45ac07}
+.pwd_complex .medium{border:1px solid #45ac07;background:#9AF518}
+.pwd_complex .medium_word{color:#61cc1f}
+.pwd_complex .poor{border:1px solid #FF9C3A;background:#FFCA92}
+.pwd_complex .poor_word{color:#FF9C3A}
+/*CSS3特效*/
+.cssanimations .ico_prompt{
+	-moz-animation-duration: .7s;
+    -moz-animation-name: prompt_hand;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-direction: alternate;
+    
+    -webkit-animation-duration: .7s;
+    -webkit-animation-name: prompt_hand;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    
+    -o-animation-duration: .7s;
+    -o-animation-name: prompt_hand;
+    -o-animation-iteration-count: infinite;
+    -o-animation-direction: alternate;
+    
+    -ms-animation-duration: .7s;
+    -ms-animation-name: prompt_hand;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-direction: alternate;
+    
+    animation-duration: .7s;
+    animation-name: prompt_hand;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@keyframes prompt_hand {
+    from {margin-left:10px}
+    to {margin-left:2px}
+}
+@-moz-keyframes prompt_hand {
+    from {margin-left:10px}
+    to {margin-left:2px}
+}
+@-webkit-keyframes prompt_hand {
+   from {margin-left:10px}
+    to {margin-left:2px}
+}
+@-o-keyframes prompt_hand {
+    from {margin-left:10px}
+    to {margin-left:2px}
+@-ms-keyframes prompt_hand {
+    from {margin-left:10px}
+    to {margin-left:2px}
+}
