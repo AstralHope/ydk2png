@@ -1,0 +1,207 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <!--<link rel="icon" type="image/png" href="http://www.assaultcore.esy.es/favicon.ico">-->
+    <!--<link rel="apple-touch-icon" type="image/png" href="http://www.assaultcore.esy.es/favicon.ico">-->
+    <!--<link rel="icon" sizes="144x144" href="http://www.assaultcore.esy.es/favicon.ico">-->
+    <!--<link rel="stylesheet" href="styles/style.css" type="text/css"/>-->
+    <link rel="stylesheet" href="styles/ydk2pngforillustrations.css" type="text/css"/>
+    <title>ydk2png</title>
+    <script src="js/html2canvas.js" type="text/javascript"></script>
+    <script src="js/canvas2image.js" type="text/javascript" ></script>
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+<section class="w1000 mc split_header">
+    <div id="container" class="container">
+        <!--<form id="contact">-->
+            <!--<h3>ydk转png工具β</h3>-->
+            <!--<h4>上传ydk文件后自动生成图鉴预览</h4>-->
+            <!--<fieldset>-->
+                <!--<input placeholder="输入标题" type="text" tabindex="1" required autofocus id="matchinfo">-->
+            <!--</fieldset>-->
+            <!--&lt;!&ndash;<fieldset>&ndash;&gt;-->
+                <!--&lt;!&ndash;<input placeholder="" type="text" tabindex="2" required id="playerinfo">&ndash;&gt;-->
+            <!--&lt;!&ndash;</fieldset>&ndash;&gt;-->
+            <!--&lt;!&ndash;<fieldset>&ndash;&gt;-->
+                <!--&lt;!&ndash;<textarea placeholder="" tabindex="3" required id="ad_input"></textarea>&ndash;&gt;-->
+            <!--&lt;!&ndash;</fieldset>&ndash;&gt;-->
+
+            <!--<fieldset>-->
+                <!--<a href="javascript:;" class="file">上传ydk文件<input type="file" id="file"></a>-->
+                <!--&lt;!&ndash;<br/>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div id="test-file-info"></div>&ndash;&gt;-->
+            <!--</fieldset>-->
+            <!--<fieldset>-->
+                <!--<a href="javascript:;" class="file" id = "btnSave">生成可复制图片</a>-->
+            <!--</fieldset>-->
+        <!--</form>-->
+        <form >
+            <h3>上传ydk文件后自动生成图鉴预览</h3>
+            <!--<h4>上传ydk文件后自动生成图鉴预览</h4>-->
+            <fieldset>
+                <input placeholder="输入标题" type="text" tabindex="1" required autofocus id="matchinfo">
+            </fieldset>
+            <!--<fieldset>-->
+            <!--<input placeholder="" type="text" tabindex="2" required id="playerinfo">-->
+            <!--</fieldset>-->
+            <!--<fieldset>-->
+            <!--<textarea placeholder="" tabindex="3" required id="ad_input"></textarea>-->
+            <!--</fieldset>-->
+
+            <!--<fieldset>-->
+                <a href="javascript:;" class="file">上传ydk文件<input type="file" id="file"></a>
+                <!--<br/>-->
+                <!--<div id="test-file-info"></div>-->
+            <!--</fieldset>-->
+            <!--<fieldset>-->
+                <a href="javascript:;" class="file" id = "btnSave">生成可复制图片</a>(demo版不可用)
+            <!--</fieldset>-->
+        </form>
+    </div>
+    <div id="canvas"></div>
+    <div id="preview">
+        <div id="main-preview" ></div>
+        <div style="clear:both"></div>
+        <!--<div id="extra-preview" ></div>-->
+        <!--<div id="deckinfo"></div>-->
+        <!--<div style="clear:both"></div>-->
+        <!--<div id="side-preview"></div>-->
+        <!--<div id="ad"></div>-->
+        <!--<div style="clear:both"></div>-->
+    </div>
+    <script type="text/javascript">
+        var
+            fileInput = document.getElementById('file'),
+            // info = document.getElementById('test-file-info'),
+            preview = document.getElementById('preview'),
+            mainpreview = document.getElementById('main-preview'),
+            extrapreview = document.getElementById('extra-preview'),
+            sidepreview = document.getElementById('side-preview');
+        deckinfo = document.getElementById('deckinfo');
+        ad = document.getElementById('ad');
+
+        function match(){
+            // 获取比赛信息:
+            var
+                matchinfo = document.getElementById('matchinfo'),
+                playerinfo = document.getElementById('playerinfo'),
+                ad_input = document.getElementById('ad_input');
+
+        }
+        // 监听change事件:
+        fileInput.addEventListener('change', function ()
+        {
+            document.getElementById('canvas').style.display = "none";
+            document.getElementById('preview').style.display = "block";
+            // 获取File引用:
+            var file = fileInput.files[0];
+            // 获取File信息:
+            var filename = file.name.substring(0,file.name.lastIndexOf("."));
+            // info.innerHTML = '文件: ' + filename + '<br/>' ;
+            var reader = new FileReader();
+            //将文件以文本形式读入页面
+            reader.readAsBinaryString(file);
+            reader.onload=function(f)
+            {
+                //显示文件
+                var str=this.result;
+                var str2= new Array();
+                var deck= new Array(); //定义卡组
+                var main= new Array(); //定义主卡
+                var extra= new Array(); //定义额外
+                var side= new Array(); //定义side
+                deck=str.split("\r\n");//得到卡组数组
+                if(deck.length<5){deck=str.split("\n");}
+                //清除#main前面的内容
+                for(var i=0;i<deck.length;i++)
+                {
+                    if(deck[i].search("#main")!=-1){deck.splice(0,i+1);i=-1;}
+                }
+
+                for(var i=0;i<deck.length;i++)
+                {
+                    if(deck[i].length == 0){deck.splice(i,1);i=-1;}
+                }
+                //给main赋值
+                for(var i=0;i<deck.length;i++)
+                {
+                    if(deck[i].search("#extra")!=-1){deck.splice(0,i+1);break;}
+                    main[i]="<li style='background-image: url(https://raw.githubusercontent.com/AstralHope/YGODatabaseSamplePics/pics/"+deck[i]+".png);'></li>";
+                }
+                //给extra赋值
+                for(var i=0;i<deck.length;i++)
+                {
+                    if(deck[i].search("!side")!=-1){deck.splice(0,i+1);break;}
+                    extra[i]="<li style='background-image: url(https://raw.githubusercontent.com/AstralHope/YGODatabaseSamplePics/pics/"+deck[i]+".png);'></li>";
+                }
+                //给side赋值
+                for(var i=0;i<deck.length;i++)
+                {
+                    side[i]="<li style='background-image: url(https://raw.githubusercontent.com/AstralHope/YGODatabaseSamplePics/pics/"+deck[i]+".png);'></li>";
+                }
+                // var mainhtml,extrahtml,sidehtml;
+                var mainhtml;
+                var myDate = new Date();
+                if(matchinfo.value==""){matchinfo.value=filename}
+                mainhtml="<span style='text-align:center;float: left;font-size:50px'>"+matchinfo.value+(main.length+extra.length+side.length)+"张"+myDate.toLocaleDateString()+"</span><ul>";
+                for(var i=0;i<main.length;i++)
+                {
+                    mainhtml+=main[i];
+                }
+                // mainhtml+="</ul>";
+                // extrahtml="<span>额外卡组"+extra.length+"张</span><ul>";
+                for(var i=0;i<extra.length;i++)
+                {
+                    mainhtml+=extra[i];
+                }
+                // extrahtml+="</ul>";
+                // sidehtml="<span>副卡组"+side.length+"张</span><ul>";
+                for(var i=0;i<side.length;i++)
+                {
+                    mainhtml+=side[i];
+                }
+                mainhtml+="</ul>";
+                mainpreview.innerHTML=mainhtml;
+                // extrapreview.innerHTML=extrahtml;
+                // sidepreview.innerHTML=sidehtml;
+                // if(matchinfo.value==""&&playerinfo.value==""){matchinfo.value=filename}
+                // if(ad_input.value==""){ad_input.value='Speed Dueling'}
+                // deckinfo.innerHTML =matchinfo.value+ '<hr/>'+playerinfo.value ;
+                // ad.innerHTML =ad_input.value;
+            };
+
+        });
+        //生成指定div画布对象
+        $(function(){
+            $("#btnSave").click(function(){
+                $("canvas").remove();
+                document.getElementById('preview').style.display = "block";
+                document.getElementById('canvas').style.display = "none";
+                html2canvas($("#preview"),{
+                    onrendered:function(canvas){
+                        document.getElementById('canvas').appendChild(canvas);
+                        document.getElementById('preview').style.display = "none";
+                        document.getElementById('canvas').style.display = "block";
+                    }
+                });
+            });
+        });
+
+    </script>
+</section>
+
+
+
+
+<!--<footer style=" text-align:right; margin:500px 0px 0px 0px;">-->
+    <!--<hr style="filter: alpha(opacity=100, finishopacity=0, style=3)" width="97%" color=#01b60e SIZE=2>-->
+    <!--<span >Copyright© 突击核 All Rights Reserved&nbsp&nbsp&nbsp&nbsp</span>-->
+<!--</footer>-->
+
+
+
+</body>
+</html>
