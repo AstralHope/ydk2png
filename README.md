@@ -13,4 +13,4 @@ A simple html that converts ydk files for YGOPro into png  that make it easy to 
 
 ydk文件夹中存放有用力啊测试图鉴的ydk文件，图例：
 
-! [link全卡图图鉴 ] ( ./img/link_illustrations.png)
+! [link全卡图图鉴 ] ( https://github.com/AstralHope/ydk2png/blob/master/img/link_illustrations.png)
