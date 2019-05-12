@@ -19,6 +19,8 @@ function match(){
 // 监听change事件:
 fileInput.addEventListener('change', function ()
 {
+    var card_num=document.getElementById("card_num").value*200;
+    document.getElementById('preview').style.width = card_num+"px";
     document.getElementById('canvas').style.display = "none";
     document.getElementById('preview').style.display = "block";
     // 获取File引用:

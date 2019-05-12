@@ -42,7 +42,8 @@
             <h3>上传ydk文件后自动生成图鉴预览</h3>
             <!--<h4>上传ydk文件后自动生成图鉴预览</h4>-->
             <fieldset>
-                <input placeholder="输入标题" type="text" tabindex="1" required autofocus id="matchinfo">
+                图鉴标题：<input placeholder="默认为文件名" type="text" tabindex="1" required autofocus id="matchinfo"><br/>
+                每行卡片：<input placeholder="输入每行张数,默认为15" type="text" id="card_num" value="15" />张
             </fieldset>
             <!--<fieldset>-->
             <!--<input placeholder="" type="text" tabindex="2" required id="playerinfo">-->
@@ -94,6 +95,8 @@
         // 监听change事件:
         fileInput.addEventListener('change', function ()
         {
+            var card_num=document.getElementById("card_num").value*200;
+            document.getElementById('preview').style.width = card_num+"px";
             document.getElementById('canvas').style.display = "none";
             document.getElementById('preview').style.display = "block";
             // 获取File引用:
